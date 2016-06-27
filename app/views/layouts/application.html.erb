@@ -9,6 +9,16 @@
   </head>
 
   <body>
-    <%= yield %>
+    <% if current_user.present? %>
+      <div class="user">
+        <%= current_user.name%><br>
+        <%= link_to 'Log Out', destroy_user_session_path, method: :delete %><br>
+        <%= link_to_unless_current("Home", root_path) %>
+      </div>
+    <% end %>
+
+    <div class="dialogs">
+        <%= yield %>
+    </div>
   </body>
 </html>
